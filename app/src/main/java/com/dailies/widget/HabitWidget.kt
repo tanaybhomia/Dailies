@@ -17,17 +17,19 @@ import androidx.glance.text.Text
 import androidx.glance.text.TextStyle
 import androidx.glance.text.FontWeight
 import androidx.glance.material3.ColorProviders
-import com.dailies.MainActivity
+import android.content.ComponentName
+import androidx.compose.ui.graphics.Color
 
 class HabitWidget : GlanceAppWidget() {
     override suspend fun provideGlance(context: Context, id: GlanceId) {
         provideContent {
-            val colors = ColorProviders(context)
+            val primaryContainer = ColorProvider(Color(0xFFEADDFF))
+            val onPrimaryContainer = ColorProvider(Color(0xFF21005D))
             Column(
                 modifier = GlanceModifier
                     .fillMaxSize()
-                    .background(colors.primaryContainer)
-                    .clickable(actionStartActivity<MainActivity>())
+                    .background(primaryContainer)
+                    .clickable(actionStartActivity(ComponentName(context, MainActivity::class.java)))
                     .padding(16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalAlignment = Alignment.CenterVertically
@@ -36,13 +38,13 @@ class HabitWidget : GlanceAppWidget() {
                     text = "Dailies",
                     style = TextStyle(
                         fontWeight = FontWeight.Bold,
-                        color = colors.onPrimaryContainer
+                        color = onPrimaryContainer
                     )
                 )
                 Text(
                     text = "Keep up your streaks!",
                     style = TextStyle(
-                        color = colors.onPrimaryContainer
+                        color = onPrimaryContainer
                     )
                 )
             }

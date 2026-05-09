@@ -14,17 +14,22 @@ import androidx.glance.text.Text
 import androidx.glance.text.TextStyle
 import androidx.glance.text.FontWeight
 import androidx.glance.material3.ColorProviders
-import com.dailies.MainActivity
+import android.content.ComponentName
+import androidx.compose.ui.graphics.Color
+import androidx.glance.unit.ColorProvider
 
 class MonthlyWidget : GlanceAppWidget() {
     override suspend fun provideGlance(context: Context, id: GlanceId) {
         provideContent {
-            val colors = ColorProviders(context)
+            val surfaceVariant = ColorProvider(Color(0xFFE7E0EC))
+            val onSurfaceVariant = ColorProvider(Color(0xFF49454F))
+            val primary = ColorProvider(Color(0xFF6750A4))
+            val secondaryContainer = ColorProvider(Color(0xFFE8DEF8))
             Column(
                 modifier = GlanceModifier
                     .fillMaxSize()
-                    .background(colors.surfaceVariant)
-                    .clickable(actionStartActivity<MainActivity>())
+                    .background(surfaceVariant)
+                    .clickable(actionStartActivity(ComponentName(context, MainActivity::class.java)))
                     .padding(16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
@@ -32,7 +37,7 @@ class MonthlyWidget : GlanceAppWidget() {
                     text = "This Month",
                     style = TextStyle(
                         fontWeight = FontWeight.Bold,
-                        color = colors.onSurfaceVariant
+                        color = onSurfaceVariant
                     ),
                     modifier = GlanceModifier.padding(bottom = 8.dp)
                 )
@@ -45,7 +50,7 @@ class MonthlyWidget : GlanceAppWidget() {
                                 Box(
                                     modifier = GlanceModifier
                                         .size(12.dp)
-                                        .background(if (isActive) colors.primary else colors.secondaryContainer)
+                                        .background(if (isActive) primary else secondaryContainer)
                                 ) {}
                                 Spacer(modifier = GlanceModifier.width(4.dp))
                             }
