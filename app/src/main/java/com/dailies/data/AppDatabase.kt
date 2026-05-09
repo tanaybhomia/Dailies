@@ -4,12 +4,14 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-@Database(entities = [Habit::class], version = 1, exportSchema = false)
+@Database(entities = [Habit::class], version = 2, exportSchema = false)
+@TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun habitDao(): HabitDao
 
@@ -24,6 +26,7 @@ abstract class AppDatabase : RoomDatabase() {
                     AppDatabase::class.java,
                     "habit_database"
                 )
+                .fallbackToDestructiveMigration()
                 .addCallback(object : RoomDatabase.Callback() {
                     override fun onCreate(db: SupportSQLiteDatabase) {
                         super.onCreate(db)
@@ -34,7 +37,8 @@ abstract class AppDatabase : RoomDatabase() {
                                     name = "Drink Water",
                                     description = "Stay hydrated!",
                                     targetCompletions = 3,
-                                    colorSeed = 0xFF03A9F4
+                                    colorSeed = 0xFF03A9F4,
+                                    tags = listOf("Routine", "Morning")
                                 )
                             )
                         }

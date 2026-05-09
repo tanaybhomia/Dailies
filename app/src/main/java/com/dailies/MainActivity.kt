@@ -9,7 +9,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
-import com.dailies.ui.screens.HomeScreen
+import com.dailies.ui.MainApp
 import com.dailies.ui.theme.DailiesTheme
 import com.dailies.viewmodel.HabitViewModel
 import com.dailies.viewmodel.HabitViewModelFactory
@@ -49,7 +49,10 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             DailiesTheme {
-                HomeScreen(viewModel = habitViewModel)
+                MainApp(
+                    viewModel = habitViewModel,
+                    settingsManager = (application as DailiesApplication).settingsManager
+                )
             }
         }
     }

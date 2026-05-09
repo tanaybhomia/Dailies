@@ -46,6 +46,13 @@ fun HabitCard(
         MaterialTheme.colorScheme.surfaceVariant
     }
 
+    val shape = RoundedCornerShape(
+        topStart = 32.dp,
+        topEnd = 8.dp,
+        bottomEnd = 32.dp,
+        bottomStart = 8.dp
+    )
+
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -56,7 +63,7 @@ fun HabitCard(
                     stiffness = Spring.StiffnessMedium
                 )
             ),
-        shape = RoundedCornerShape(24.dp),
+        shape = shape,
         colors = CardDefaults.cardColors(containerColor = cardColor)
     ) {
         Column(modifier = Modifier.padding(20.dp)) {

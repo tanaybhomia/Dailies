@@ -13,5 +13,7 @@ data class Habit(
     val streak: Int = 0,
     val totalCompletions: Int = 0,
     val lastCompletedDate: Long = 0L,
-    val colorSeed: Long = 0xFF6200EE
+    val colorSeed: Long = 0xFF6200EE,
+    val tags: List<String> = emptyList(),
+    val notificationTime: String? = null
 )
