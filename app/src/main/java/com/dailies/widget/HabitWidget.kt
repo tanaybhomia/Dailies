@@ -17,7 +17,7 @@ import androidx.glance.text.Text
 import androidx.glance.text.TextStyle
 import androidx.glance.text.FontWeight
 import androidx.glance.material3.ColorProviders
-import android.content.ComponentName
+import android.content.Intent
 import androidx.compose.ui.graphics.Color
 import androidx.glance.unit.ColorProvider
 import com.dailies.MainActivity
@@ -31,7 +31,7 @@ class HabitWidget : GlanceAppWidget() {
                 modifier = GlanceModifier
                     .fillMaxSize()
                     .background(primaryContainer)
-                    .clickable(actionStartActivity(ComponentName(context, MainActivity::class.java)))
+                    .clickable(actionStartActivity(Intent(context, MainActivity::class.java)))
                     .padding(16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalAlignment = Alignment.CenterVertically
